@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplicationRazor.Models.Department>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var item in Model)
+            {
+               <th>
+                   @Html.DisplayFor(modelItem => item.Id)
+               </th>
+               <th>
+                   @Html.DisplayFor(modelItem => item.Name)
+               </th>
+            }
+        </tr>
+    </tbody>
+</table>
