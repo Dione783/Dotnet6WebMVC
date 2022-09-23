@@ -1,4 +1,5 @@
-﻿using WebApplicationRazor.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplicationRazor.Data;
 using WebApplicationRazor.Models;
 
 namespace WebApplicationRazor.Services
@@ -12,9 +13,9 @@ namespace WebApplicationRazor.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Departments.OrderBy(x => x.Name).ToList();
+            return await _context.Departments.OrderBy(x => x.Name).ToListAsync();
         }
     }
 }

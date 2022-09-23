@@ -20,6 +20,7 @@ namespace WebApplicationRazor.Models
         public DateTime BirthDate { get; set; }
         [Display(Name="Base Salary")]
         [Required(ErrorMessage = "{0} Required")]
+        [DisplayFormat(DataFormatString = "{0:C}")]        
         [Range(0.01,50000.00,ErrorMessage = "{0} Deve Conter no minimo {2} caracteres e no máximo {1} caracteres")]
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
