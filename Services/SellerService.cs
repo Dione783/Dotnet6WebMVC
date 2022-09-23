@@ -1,6 +1,7 @@
 ﻿using WebApplicationRazor.Data;
 using WebApplicationRazor.Models;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationRazor.Services.Exceptions;
 
 namespace WebApplicationRazor.Services
 {
@@ -15,7 +16,7 @@ namespace WebApplicationRazor.Services
 
         public List<Seller> FindAll()
         {
-            return _context.Seller.ToList();
+            return _context.Seller.Include(obj => obj.Department).ToList();
         }
 
         public void Insert(Seller seller)
@@ -25,14 +26,41 @@ namespace WebApplicationRazor.Services
         }
 
         public Seller FindById(int Id){
-
-            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(s => s.Id == Id);
+            try
+            {
+                if (!_context.Seller.Any(x => x.Id == Id))
+                {
+                    throw new NotFoundException("Id not Found");
+                }
+                return _context.Seller.Include(obj => obj.Department).FirstOrDefault(s => s.Id == Id);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new NotFoundException(ex.Message);
+            }
         }
 
         public void Remove(int Id){
             Seller seller = _context.Seller.Find(Id);
             _context.Seller.Remove(seller);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller seller)
+        {
+            if(!_context.Seller.Any(x => x.Id == seller.Id))
+            {
+                throw new NotFoundException("Id not Found");
+            }
+            try
+            {
+                _context.Update(seller);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException exception)
+            {
+                throw new DbConcurrencyException(exception.Message);
+            }
         }
     }
 }

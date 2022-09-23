@@ -9,7 +9,7 @@ namespace WebApplicationRazor.Data
 
         public SeedingService(DataContext context)
         {
-            _context= context;
+            _context=context;
         }
 
         public void Seed()
