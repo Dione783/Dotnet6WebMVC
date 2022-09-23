@@ -16308,6 +16308,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Projetos\\WebAppRazorMVC\\WebApplicationRazor\\WebApplicationRazor\\Views\\SalesRecords\\SimpleSearch.cshtml",
+      "TargetPath": "Views\\SalesRecords\\SimpleSearch.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Projetos\\WebAppRazorMVC\\WebApplicationRazor\\WebApplicationRazor\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -16348,8 +16353,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Projetos\\WebAppRazorMVC\\WebApplicationRazor\\WebApplicationRazor\\Views\\SalesRecords\\GroupingSearch.cshtml",
+      "TargetPath": "Views\\SalesRecords\\GroupingSearch.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Projetos\\WebAppRazorMVC\\WebApplicationRazor\\WebApplicationRazor\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Projetos\\WebAppRazorMVC\\WebApplicationRazor\\WebApplicationRazor\\Views\\SalesRecords\\Index.cshtml",
+      "TargetPath": "Views\\SalesRecords\\Index.cshtml",
       "FileKind": "mvc"
     },
     {

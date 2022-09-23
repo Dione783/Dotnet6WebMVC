@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplicationRazor.Models;
 using WebApplicationRazor.Models.ViewModels;
 using WebApplicationRazor.Services;
+using WebApplicationRazor.Services.Exceptions;
 
 namespace WebApplicationRazor.Controllers
 {
@@ -64,8 +65,12 @@ namespace WebApplicationRazor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _sellerService.RemoveAsync(id);
+            try{
+                await _sellerService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
+            }catch(IntegrityException e){
+                return RedirectToAction(nameof(Error),new {Message = e.Message});
+            }
         }
 
         public async Task<IActionResult> Details(int? id)
