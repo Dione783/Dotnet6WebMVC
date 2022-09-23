@@ -1,5 +1,6 @@
 ﻿using WebApplicationRazor.Data;
 using WebApplicationRazor.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplicationRazor.Services
 {
@@ -23,5 +24,15 @@ namespace WebApplicationRazor.Services
             _context.SaveChanges();
         }
 
+        public Seller FindById(int Id){
+
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(s => s.Id == Id);
+        }
+
+        public void Remove(int Id){
+            Seller seller = _context.Seller.Find(Id);
+            _context.Seller.Remove(seller);
+            _context.SaveChanges();
+        }
     }
 }

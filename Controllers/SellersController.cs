@@ -26,20 +26,17 @@ namespace WebApplicationRazor.Controllers
         // GET: Sellers
         public IActionResult Index()
         {
-              List<Seller> list = _sellerService.FindAll();
-              return View(list);
+            List<Seller> list = _sellerService.FindAll();
+            return View(list);
         }
 
         public IActionResult Create()
         {
             ICollection<Department> departments = _departmentService.FindAll();
-            var ViewModel = new SellerFormViewModel() { Departments=departments};
+            var ViewModel = new SellerFormViewModel() { Departments = departments };
             return View(ViewModel);
         }
 
-        // POST: Sellers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
@@ -48,5 +45,36 @@ namespace WebApplicationRazor.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _sellerService.FindById(id.Value);
+            return View(obj);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _sellerService.Remove(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            Seller seller = _sellerService.FindById(id.Value);
+            if(seller == null)
+            {
+                return NotFound();
+            }
+            return View(seller);
+        }
     }
 }

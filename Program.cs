@@ -12,10 +12,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<DepartmentService>();
-
-//builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<SellerService>();
 
 var app = builder.Build();
 
