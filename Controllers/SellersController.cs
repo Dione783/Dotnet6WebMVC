@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using WebApplicationRazor.Data;
 using WebApplicationRazor.Models;
 using WebApplicationRazor.Models.ViewModels;
 using WebApplicationRazor.Services;
-using WebApplicationRazor.Services.Exceptions;
 
 namespace WebApplicationRazor.Controllers
 {
@@ -50,6 +41,11 @@ namespace WebApplicationRazor.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Seller seller)
         {
+            if(!ModelState.IsValid){
+                List<Department> departments = _departmentService.FindAll();
+                SellerFormViewModel viewModel = new SellerFormViewModel(){Seller=seller,Departments=departments};
+                return View(viewModel);
+            }
             _sellerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
@@ -111,7 +107,11 @@ namespace WebApplicationRazor.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int ?id,Seller seller)
         {
-
+            if(!ModelState.IsValid){
+                List<Department> departments = _departmentService.FindAll();
+                SellerFormViewModel viewModel = new SellerFormViewModel(){Seller=seller,Departments=departments};
+                return View(viewModel);
+            }
             if(id != seller.Id)
             {
                 return RedirectToAction(nameof(Error), new { Message = "Id mismatch" });

@@ -12,7 +12,6 @@ namespace WebApplicationRazor.Controllers
         {
             _context = context;
         }
-
         public IActionResult Index()
         {
             return View(_context.Departments.ToListAsync());
