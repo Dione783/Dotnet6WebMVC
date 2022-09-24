@@ -16,9 +16,10 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DepartmentService>();
 builder.Services.AddScoped<SellerService>();
+builder.Services.AddScoped<SalesRecordService>();
 
 var enUS = new CultureInfo("en-US");
-var localizationOptions = new RequestLocalizationOptions 
+var localizationOptions = new RequestLocalizationOptions
 {
     DefaultRequestCulture=new RequestCulture(enUS),
     SupportedCultures=new List<CultureInfo> { enUS},
